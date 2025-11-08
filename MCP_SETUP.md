@@ -488,6 +488,62 @@ npm list -g --depth=0 | grep mcp
 
 ---
 
+## Gemini File Search Integration
+
+SuperClaude now supports **Gemini File Search** for advanced Retrieval Augmented Generation (RAG) capabilities.
+
+### What is File Search?
+
+File Search enables semantic search across your documentation and codebase:
+- Upload and index documents
+- Ask questions about your files
+- Get AI-generated answers with citations
+- Filter by metadata
+- Manage multiple document collections
+
+### Quick Start
+
+```bash
+# Install Python SDK
+pip install google-genai
+
+# Set API key (already required for Browserbase)
+export GEMINI_API_KEY='your-gemini-api-key-here'
+
+# Index SuperClaude documentation
+python examples/gemini-file-search/superclaude_rag.py --index
+
+# Query documentation
+python examples/gemini-file-search/superclaude_rag.py --query "How do I use personas?"
+
+# Index codebase
+python examples/gemini-file-search/codebase_rag.py --index
+
+# Search codebase
+python examples/gemini-file-search/codebase_rag.py --find-function "handles authentication"
+```
+
+### Use Cases
+
+1. **Documentation Search** - Semantic search across all SuperClaude docs
+2. **Codebase Analysis** - Find functions, explain patterns, analyze dependencies
+3. **Knowledge Base** - Index and search project-specific documentation
+4. **Code Understanding** - Ask questions about how code works
+
+### Learn More
+
+- [Gemini File Search Integration Guide](GEMINI_FILE_SEARCH.md) - Comprehensive guide
+- [Python Examples](examples/gemini-file-search/) - Ready-to-use scripts
+- [Official Docs](https://ai.google.dev/gemini-api/docs/file-search) - Google documentation
+
+### Pricing
+
+- **Indexing:** $0.15 per 1M tokens (one-time cost)
+- **Storage:** Free
+- **Queries:** Very cheap (same as Gemini API pricing)
+
+---
+
 ## Additional Resources
 
 ### Official Documentation
@@ -499,6 +555,7 @@ npm list -g --depth=0 | grep mcp
 - **Browserbase:** https://docs.browserbase.com
 - **Ref Tools:** https://ref.tools/docs
 - **ShadCN UI:** https://ui.shadcn.com
+- **Gemini File Search:** https://ai.google.dev/gemini-api/docs/file-search
 
 ### Service Dashboards
 

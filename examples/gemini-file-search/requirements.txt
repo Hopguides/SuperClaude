@@ -1,0 +1,11 @@
+# Gemini File Search Requirements
+# Install with: pip install -r requirements.txt
+
+# Google Generative AI SDK (new version with File Search support)
+google-genai>=1.0.0
+
+# Alternative/legacy SDK (optional, for compatibility)
+google-generativeai>=0.8.0
+
+# Utilities
+python-dotenv>=1.0.0
