@@ -33,6 +33,9 @@ desktop.ini
 *.old
 .cache/
 
+# Docker outputs
+outputs/
+
 # Backup files from install script
 superclaude-backup.*
 

@@ -1,0 +1,172 @@
+version: '3.8'
+
+services:
+  # Main SuperClaude service
+  superclaude:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: superclaude:latest
+    container_name: superclaude
+    restart: unless-stopped
+
+    # Environment variables (override with .env file)
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - SUPABASE_URL=${SUPABASE_URL:-}
+      - SUPABASE_KEY=${SUPABASE_KEY:-}
+      - FIRECRAWL_API_KEY=${FIRECRAWL_API_KEY:-}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - BROWSERBASE_API_KEY=${BROWSERBASE_API_KEY:-}
+      - REF_API_KEY=${REF_API_KEY:-}
+      - PYTHONUNBUFFERED=1
+
+    # Mount volumes
+    volumes:
+      # Mount .env file for API keys (read-only)
+      - ./.env:/app/.env:ro
+      # Mount outputs directory for persistent data
+      - ./outputs:/app/outputs
+      # Mount examples for development (optional, comment out for production)
+      - ./examples:/app/examples
+      # Mount documentation for live updates (optional)
+      - ./GEMINI_FILE_SEARCH.md:/app/GEMINI_FILE_SEARCH.md:ro
+      - ./TV3_INTEGRATION_PLAN.md:/app/TV3_INTEGRATION_PLAN.md:ro
+      - ./MCP_SETUP.md:/app/MCP_SETUP.md:ro
+
+    # Working directory
+    working_dir: /app
+
+    # Default command - demo mode
+    command: python3 examples/demo/demo_test.py
+
+    # Network
+    networks:
+      - superclaude-network
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+    # Resource limits (optional)
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  # Demo service - runs demo tests
+  superclaude-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: superclaude:latest
+    container_name: superclaude-demo
+
+    command: python3 examples/demo/demo_test.py
+
+    volumes:
+      - ./outputs:/app/outputs
+
+    networks:
+      - superclaude-network
+
+    profiles:
+      - demo
+
+  # Documentation RAG service
+  superclaude-docs-rag:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: superclaude:latest
+    container_name: superclaude-docs-rag
+
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./outputs:/app/outputs
+      - ./:/app/docs:ro
+
+    working_dir: /app
+
+    # Will wait for manual commands via docker exec
+    command: tail -f /dev/null
+
+    networks:
+      - superclaude-network
+
+    profiles:
+      - docs
+
+  # Codebase analysis RAG service
+  superclaude-code-rag:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: superclaude:latest
+    container_name: superclaude-code-rag
+
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./outputs:/app/outputs
+      - ./:/app/codebase:ro
+
+    working_dir: /app
+
+    # Will wait for manual commands via docker exec
+    command: tail -f /dev/null
+
+    networks:
+      - superclaude-network
+
+    profiles:
+      - code
+
+  # TV3 integration service
+  superclaude-tv3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: superclaude:latest
+    container_name: superclaude-tv3
+
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - SUPABASE_URL=${SUPABASE_URL:-}
+      - SUPABASE_KEY=${SUPABASE_KEY:-}
+
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./outputs:/app/outputs
+
+    working_dir: /app
+
+    # Will wait for manual commands via docker exec
+    command: tail -f /dev/null
+
+    networks:
+      - superclaude-network
+
+    profiles:
+      - tv3
+
+networks:
+  superclaude-network:
+    driver: bridge
+
+volumes:
+  outputs:
+    driver: local
