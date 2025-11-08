@@ -1,0 +1,11 @@
+# TV3 Integration Requirements
+# Install with: pip install -r requirements.txt
+
+# Google Generative AI SDK (File Search support)
+google-genai>=1.0.0
+
+# Supabase Python client
+supabase>=2.0.0
+
+# Utilities
+python-dotenv>=1.0.0
