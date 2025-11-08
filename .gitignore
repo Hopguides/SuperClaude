@@ -35,3 +35,9 @@ desktop.ini
 
 # Backup files from install script
 superclaude-backup.*
+
+# Environment variables and API keys
+.env
+.env.local
+.env.*.local
+claude_mcp_config.json

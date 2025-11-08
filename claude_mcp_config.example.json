@@ -1,0 +1,43 @@
+{
+  "mcpServers": {
+    "ref": {
+      "type": "http",
+      "url": "https://api.ref.tools/mcp?apiKey=YOUR_REF_API_KEY_HERE"
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--access-token",
+        "YOUR_SUPABASE_ACCESS_TOKEN_HERE"
+      ]
+    },
+    "shadcn-ui": {
+      "command": "npx",
+      "args": ["@jpisnice/shadcn-ui-mcp-server"]
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR_FIRECRAWL_API_KEY_HERE"
+      }
+    },
+    "openrouter": {
+      "command": "npx",
+      "args": ["@mcpservers/openrouterai"],
+      "env": {
+        "OPENROUTER_API_KEY": "YOUR_OPENROUTER_API_KEY_HERE"
+      }
+    },
+    "browserbase": {
+      "command": "npx",
+      "args": ["@browserbasehq/mcp"],
+      "env": {
+        "BROWSERBASE_API_KEY": "YOUR_BROWSERBASE_API_KEY_HERE",
+        "GEMINI_API_KEY": "YOUR_GEMINI_API_KEY_HERE"
+      }
+    }
+  }
+}

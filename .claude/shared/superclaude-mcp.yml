@@ -34,6 +34,56 @@ Puppeteer:
   Token_Cost: "Low (action-based) | High reliability | Testing"
   Workflows: "Connect → navigate → interact → validate → report"
 
+Ref:
+  Purpose: "API documentation assistant | Official documentation access | Code examples"
+  Capabilities: "search-documentation | get-api-reference | find-code-examples | version-specific-docs"
+  Best_For: "API reference | Language documentation | Framework guides | Best practices"
+  Use: "Research-first methodology | Official documentation | Implementation patterns"
+  Token_Cost: "Low-Medium | High accuracy | Authoritative sources"
+  Workflows: "Query documentation → extract relevant info → provide examples → cite sources"
+
+Supabase:
+  Purpose: "Database management | Supabase project interaction | Edge Functions"
+  Capabilities: "execute-sql | list-tables | manage-schemas | check-functions | project-management"
+  Best_For: "Database queries | Schema management | Edge Functions status | Supabase projects"
+  Use: "Direct database access | Real-time development | Backend management"
+  Token_Cost: "Low | Direct API access | Efficient queries"
+  Workflows: "Connect project → query/manage → validate → monitor"
+
+ShadCN_UI:
+  Purpose: "ShadCN UI component generation | React component library"
+  Capabilities: "list-components | generate-component-code | get-documentation | find-examples"
+  Best_For: "React UI development | Component generation | Design systems | Tailwind CSS"
+  Use: "Rapid UI prototyping | Consistent component patterns | Accessible components"
+  Token_Cost: "Low-Medium | High-quality React components | Design system compliance"
+  Workflows: "Requirements → list components → generate code → integrate → validate"
+
+Firecrawl:
+  Purpose: "Web scraping | Content extraction | URL processing"
+  Capabilities: "scrape-pages | extract-data | html-to-markdown | handle-js-rendering"
+  Best_For: "Content extraction | Web scraping | Data aggregation | URL processing"
+  Use: "Article extraction | Content parsing | Data collection"
+  Token_Cost: "Medium | Usage-based | Pay-per-scrape"
+  Workflows: "Target URL → scrape content → extract data → process → validate"
+
+OpenRouter:
+  Purpose: "AI models access | Multi-model inference | AI orchestration"
+  Capabilities: "access-100-models | send-prompts | compare-responses | get-pricing | stream-responses"
+  Best_For: "AI model access | Content generation | Multi-model comparison | AI processing"
+  Use: "AI-powered features | Content generation | Model experimentation"
+  Token_Cost: "Variable | Pay-per-use | Model-dependent pricing"
+  Workflows: "Select model → send prompt → process response → analyze results"
+  Available_Models: "OpenAI GPT-4/3.5 | Anthropic Claude | Google Gemini | Meta Llama | Mistral"
+
+Browserbase:
+  Purpose: "Browser automation | AI-powered browser sessions | Dynamic content"
+  Capabilities: "launch-browser | navigate-pages | extract-js-content | take-screenshots | execute-actions"
+  Best_For: "Browser automation | JavaScript-rendered content | Dynamic scraping | Testing"
+  Use: "Dynamic content extraction | Automated browser sessions | AI-assisted navigation"
+  Token_Cost: "Medium-High | Session-based | AI-powered (requires Gemini API)"
+  Workflows: "Launch session → navigate → extract → screenshot → validate"
+  Requirements: "Google Gemini API for AI-powered browser control"
+
 ## Token_Economics
 Budget_Allocation: "Native(0) | Light_MCP(minimal) | Medium_MCP(moderate) | Heavy_MCP(extensive)"
 Intelligent_Escalation: "Native→C7→Sequential→Multi-MCP | Cost-aware progression"
@@ -43,27 +93,51 @@ Efficiency_Patterns: "Batch similar operations | Cache results | Progressive loa
 ## Workflows
 Library_Research:
   Trigger: "External library detection | Import statement analysis | Framework questions"
-  Process: "C7 resolve-library-id → validate documentation → extract patterns → implement with citations"
+  Process: "C7/Ref resolve-library-id → validate documentation → extract patterns → implement with citations"
   Standards: "Official documentation required | Version compatibility checked | Best practices documented"
-  Example: "'React hooks implementation' → C7('react') → get-docs('hooks') → implementation"
+  Example: "'React hooks implementation' → Ref('react') → get-docs('hooks') → implementation"
 
 Complex_Analysis:
   Trigger: "Multi-step problems | System design | Architecture questions | Performance issues"
   Process: "Sequential decomposition → guided research → comprehensive analysis → action plan"
   Standards: "Evidence-based reasoning | Methodology | Documented decision process"
-  Example: "'Performance optimization' → Sequential(analyze bottlenecks) → C7(optimization patterns) → implementation"
+  Example: "'Performance optimization' → Sequential(analyze bottlenecks) → Ref(optimization patterns) → implementation"
 
 UI_Development:
   Trigger: "Component requirements | Design system needs | Frontend development"
-  Process: "Magic component generation → design system integration → quality validation → testing"
+  Process: "Magic/ShadCN component generation → design system integration → quality validation → testing"
   Standards: "Accessibility compliance | Design system adherence | Patterns"
-  Example: "'Dashboard components' → Magic('dashboard') → integrate patterns → Puppeteer validation"
+  Example: "'Dashboard components' → ShadCN('dashboard') → integrate patterns → Puppeteer/Browserbase validation"
 
 Testing:
   Trigger: "Quality assurance needs | E2E testing | Performance validation"
-  Process: "Puppeteer automation → comprehensive testing → performance monitoring → quality reports"
+  Process: "Puppeteer/Browserbase automation → comprehensive testing → performance monitoring → quality reports"
   Standards: "Testing patterns | Coverage requirements | Performance standards"
-  Example: "'E2E testing' → Puppeteer(test scenarios) → performance monitoring → quality reports"
+  Example: "'E2E testing' → Browserbase(test scenarios) → performance monitoring → quality reports"
+
+Database_Operations:
+  Trigger: "Database queries | Schema management | Supabase operations | Edge Functions"
+  Process: "Supabase connect → execute queries → validate results → monitor performance"
+  Standards: "SQL best practices | Data validation | Security compliance"
+  Example: "'List all tables' → Supabase(list-tables) → query data → analyze schema"
+
+Web_Scraping:
+  Trigger: "Content extraction | URL processing | Data aggregation | Article parsing"
+  Process: "Firecrawl scrape → extract structured data → validate content → process results"
+  Standards: "Rate limiting | Error handling | Data validation"
+  Example: "'Extract article content' → Firecrawl(scrape-url) → extract-data → validate-content"
+
+AI_Processing:
+  Trigger: "AI model access | Content generation | Multi-model comparison | AI features"
+  Process: "OpenRouter select model → send prompt → process response → analyze results"
+  Standards: "Cost optimization | Model selection | Response validation"
+  Example: "'Generate article summary' → OpenRouter(claude-3) → process-response → validate-output"
+
+Dynamic_Content:
+  Trigger: "JavaScript-rendered pages | Dynamic scraping | Browser automation | Screenshots"
+  Process: "Browserbase launch → navigate → extract content → validate → screenshot"
+  Standards: "Session management | Resource optimization | Content validation"
+  Example: "'Extract JS content' → Browserbase(launch) → navigate → extract → validate"
 
 ## Quality_Control
 Context7_Validation:
@@ -86,28 +160,62 @@ Puppeteer_Validation:
   Partial_Results: "Limited testing possible | Performance data incomplete | Interaction issues"
   Failure_Recovery: "Native testing guidance | Manual validation steps | Alternative testing approaches"
 
+Ref_Validation:
+  Success_Criteria: "Documentation found | Code examples provided | Version compatibility verified"
+  Partial_Results: "Try alternative queries | Broader search | Document limitations"
+  Failure_Recovery: "WebSearch official docs | Use Context7 alternative | Continue with available info"
+
+Supabase_Validation:
+  Success_Criteria: "Query executed successfully | Data validated | Schema confirmed"
+  Partial_Results: "Limited data access | Schema partial | Function status unclear"
+  Failure_Recovery: "Check API credentials | Verify project access | Manual database validation"
+
+ShadCN_Validation:
+  Success_Criteria: "Component generated | Tailwind CSS compatible | Accessible | React best practices"
+  Partial_Results: "Component needs customization | Style adjustments required | Integration guidance needed"
+  Failure_Recovery: "Manual component creation | Use Magic alternative | Provide component template"
+
+Firecrawl_Validation:
+  Success_Criteria: "Content extracted | Data structured | Markdown conversion successful"
+  Partial_Results: "Partial content | Rate limit hit | JS rendering incomplete"
+  Failure_Recovery: "Retry with delay | Use Browserbase for JS content | Manual extraction guidance"
+
+OpenRouter_Validation:
+  Success_Criteria: "Model response received | Cost within budget | Output quality validated"
+  Partial_Results: "Response incomplete | Model unavailable | Rate limit reached"
+  Failure_Recovery: "Try alternative model | Adjust prompt | Check API credits | Use native capabilities"
+
+Browserbase_Validation:
+  Success_Criteria: "Browser session launched | Navigation successful | Content extracted | Screenshot captured"
+  Partial_Results: "Session timeout | Navigation issues | Partial content | Gemini API issues"
+  Failure_Recovery: "Retry session | Use Firecrawl alternative | Manual testing steps | Check Gemini API key"
+
 ## Command_Integration
 Development_Commands:
-  build: "Magic for UI components | C7 for framework documentation | Sequential for architecture"
-  dev_setup: "C7 for tooling documentation | Sequential for environment optimization"
-  test: "Puppeteer for E2E testing | C7 for testing frameworks | Sequential for coverage analysis"
+  build: "Magic/ShadCN for UI components | Ref/C7 for framework docs | Sequential for architecture | Supabase for backend"
+  dev_setup: "Ref for tooling docs | Sequential for optimization | Supabase for database setup"
+  test: "Puppeteer/Browserbase for E2E | Ref for testing frameworks | Sequential for coverage analysis"
 
 Analysis_Commands:
-  analyze: "Sequential for complex analysis | C7 for pattern research | Puppeteer for performance"
-  troubleshoot: "Sequential for root cause analysis | C7 for solution patterns | Puppeteer for reproduction"
-  improve: "Sequential for optimization analysis | C7 for best practices | Puppeteer for validation"
-  explain: "C7 for official documentation | Sequential for complex explanations | Magic for examples"
+  analyze: "Sequential for complex analysis | Ref for pattern research | Puppeteer/Browserbase for performance | Supabase for data analysis"
+  troubleshoot: "Sequential for root cause analysis | Ref for solutions | Browserbase for reproduction | Supabase for DB issues"
+  improve: "Sequential for optimization | Ref for best practices | Browserbase for validation | OpenRouter for AI improvements"
+  explain: "Ref for official docs | Sequential for complex explanations | ShadCN for UI examples"
 
 Operations_Commands:
-  deploy: "Sequential for deployment analysis | C7 for deployment patterns | Puppeteer for validation"
-  scan: "Sequential for comprehensive analysis | C7 for security standards | Native for speed"
-  migrate: "Sequential for migration planning | C7 for migration patterns | Puppeteer for validation"
-  cleanup: "Sequential for impact analysis | Native for speed | C7 for best practices"
+  deploy: "Sequential for deployment analysis | Ref for patterns | Browserbase for validation | Supabase for DB migrations"
+  scan: "Sequential for comprehensive analysis | Ref for security standards | Firecrawl for web content | Native for speed"
+  migrate: "Sequential for migration planning | Ref for patterns | Supabase for DB migrations | Browserbase for validation"
+  cleanup: "Sequential for impact analysis | Native for speed | Ref for best practices"
 
 Design_Commands:
-  design: "Sequential for architectural thinking | C7 for design patterns | Magic for prototypes"
-  spawn: "Intelligent MCP routing based on task type | Expertise matching"
-  document: "C7 for documentation standards | Sequential for complex topics | Magic for examples"
+  design: "Sequential for architectural thinking | Ref for design patterns | Magic/ShadCN for prototypes | Supabase for data models"
+  spawn: "Intelligent MCP routing | Expertise matching | Multi-server orchestration"
+  document: "Ref for documentation standards | Sequential for complex topics | ShadCN for examples | Firecrawl for content extraction"
+
+Data_Commands:
+  data_processing: "Supabase for database operations | Firecrawl for web scraping | OpenRouter for AI processing | Sequential for analysis"
+  content_extraction: "Firecrawl for static content | Browserbase for dynamic content | OpenRouter for processing | Sequential for validation"
 
 ## Error_Recovery
 Context7_Recovery:
@@ -133,6 +241,42 @@ Puppeteer_Recovery:
   Test_Execution_Issues: "Simplified test scenarios → manual validation → alternative approaches"
   Performance_Monitoring_Failed: "Native performance tools → manual monitoring → metrics guidance"
   Automation_Limitations: "Hybrid testing approach → manual verification → documented procedures"
+
+Ref_Recovery:
+  Documentation_Not_Found: "Broader search → alternative keywords → WebSearch → use Context7"
+  API_Key_Invalid: "Check API key validity → regenerate key → verify endpoint"
+  Rate_Limit_Exceeded: "Wait and retry → use cached results → alternative documentation source"
+  Connection_Issues: "Retry request → check network → use offline documentation"
+
+Supabase_Recovery:
+  Connection_Failed: "Verify access token → check project ID → validate network"
+  Query_Failed: "Validate SQL syntax → check permissions → simplify query"
+  Token_Expired: "Regenerate access token → update configuration → retry operation"
+  Project_Not_Found: "Verify project ID → check access permissions → list available projects"
+
+ShadCN_Recovery:
+  Component_Not_Found: "List available components → try alternative → use Magic fallback"
+  Generation_Failed: "Provide component template → manual implementation → documentation reference"
+  Integration_Issues: "Check Tailwind config → verify dependencies → provide setup steps"
+  Style_Conflicts: "Adjust component styles → customize theme → resolve conflicts"
+
+Firecrawl_Recovery:
+  Scraping_Failed: "Retry with delay → use Browserbase for JS content → manual extraction"
+  Rate_Limit: "Wait for rate limit reset → check API usage → upgrade plan if needed"
+  API_Key_Invalid: "Verify API key → regenerate → update configuration"
+  Content_Blocked: "Try alternative scraping method → use Browserbase → manual content access"
+
+OpenRouter_Recovery:
+  Model_Unavailable: "Try alternative model → check model status → fallback to native"
+  Credits_Exhausted: "Check account balance → add credits → use lower-cost model"
+  Rate_Limit: "Wait and retry → reduce request frequency → check usage limits"
+  API_Error: "Retry request → validate prompt → check API status → use alternative"
+
+Browserbase_Recovery:
+  Session_Failed: "Retry session creation → check API key → verify session limits"
+  Navigation_Failed: "Simplify navigation → retry → use Firecrawl alternative"
+  Gemini_API_Error: "Verify Gemini API key → check quota → fallback to manual navigation"
+  Timeout: "Increase timeout → simplify operations → use static scraping alternative"
 
 ## Best_Practices
 Research_Standards:

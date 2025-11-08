@@ -115,12 +115,24 @@ Development lifecycle coverage:
 ```
 
 ### 🎛️ **MCP Integration**
+
+**Core Servers:**
 - **Context7**: Access to library documentation
 - **Sequential**: Multi-step reasoning capabilities
 - **Magic**: AI-generated UI components
 - **Puppeteer**: Browser testing and automation
 
+**Extended Servers (v2.0.1+):**
+- **Ref**: API documentation assistant
+- **Supabase**: Database management and Edge Functions
+- **ShadCN UI**: React component library generator
+- **Firecrawl**: Web scraping and content extraction
+- **OpenRouter**: Access to 100+ AI models (GPT-4, Claude, Gemini, Llama, etc.)
+- **Browserbase**: AI-powered browser automation
+
 **⚠️ Important:** SuperClaude does not include MCP servers. You need to install them separately in Claude Code's MCP settings to use MCP-related flags (--c7, --seq, --magic, --pup).
+
+**📖 Setup Guide:** See [MCP_SETUP.md](MCP_SETUP.md) for detailed installation and configuration instructions.
 
 ### 📊 **Token Efficiency**
 SuperClaude's @include template system helps manage token usage:
@@ -378,7 +390,7 @@ Join the community: [Discussions](https://github.com/NomenAK/SuperClaude/discuss
 **📊 Framework Details:**
 - **Commands**: 19 specialized commands
 - **Personas**: 9 cognitive approaches
-- **MCP Servers**: 4 integrations
+- **MCP Servers**: 10 integrations (4 core + 6 extended)
 - **Methodology**: Evidence-based approach
 - **Usage**: By development teams
 
